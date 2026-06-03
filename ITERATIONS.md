@@ -86,3 +86,19 @@
 - Fixed: BlogPost CTA uses navigate() + scrollIntoView instead of unreliable /#contact Link
 - Fixed: unused EmailCapture import removed
 - Vercel preview URLs added to all iterations in ITERATIONS.md
+
+**Critique Score:** 35/40
+
+---
+
+## Iteration 5 — Hero Image + /rebuild Skill + Offset Border Removal
+**Commit:** (current)
+**Branch:** main
+**Vercel Preview:** TBD
+
+**Changes:**
+- Hero editorial photo replaced with less stock-looking travel image
+- Removed offset-border anti-pattern from hero photo
+- `/rebuild` skill created at `~/.claude/skills/rebuild/` (workflow automation, not site code)
+
+**Critique score target:** 37+/40

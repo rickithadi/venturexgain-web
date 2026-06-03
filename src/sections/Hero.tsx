@@ -172,19 +172,9 @@ export default function Hero() {
             className="hidden lg:block self-end"
           >
             <div style={{ position: 'relative' }}>
-              {/* Offset border */}
-              <div
-                style={{
-                  position: 'absolute', top: '-12px', right: '-12px',
-                  width: '100%', height: '100%',
-                  border: '1px solid var(--gold)',
-                  opacity: 0.4,
-                  pointerEvents: 'none',
-                }}
-              />
               <div style={{ aspectRatio: '3/4', overflow: 'hidden', width: '100%' }}>
                 <img
-                  src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=640&q=85&auto=format"
+                  src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=640&q=85&auto=format"
                   alt="Venture & Gain — curated travel experiences"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
                   loading="eager"

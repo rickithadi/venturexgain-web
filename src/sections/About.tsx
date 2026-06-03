@@ -144,12 +144,13 @@ export default function About() {
                 key={v.title}
                 {...fadeIn(0.1 + i * 0.1)}
                 style={{
-                  padding: '36px 32px 36px 0',
+                  paddingTop: '36px',
+                  paddingBottom: '36px',
                   paddingLeft: i === 0 ? '0' : '32px',
+                  paddingRight: i === 2 ? '0' : '32px',
                   borderRight: i < 2 ? '1px solid var(--border)' : 'none',
                   borderBottom: '1px solid var(--border)',
                 }}
-                className={i > 0 ? 'pl-8' : ''}
               >
                 <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--fg)', marginBottom: '12px', fontWeight: 500 }}>
                   {v.title}

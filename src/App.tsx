@@ -6,8 +6,8 @@ import About from './sections/About'
 import Services from './sections/Services'
 import Blog from './sections/Blog'
 import Testimonials from './sections/Testimonials'
-import EmailCapture from './sections/EmailCapture'
 import Contact from './sections/Contact'
+import Experiences from './sections/Experiences'
 import BlogIndex from './pages/BlogIndex'
 import BlogPost from './pages/BlogPost'
 
@@ -19,9 +19,9 @@ function Home() {
         <Hero />
         <About />
         <Services />
+        <Experiences />
         <Testimonials />
         <Blog />
-        <EmailCapture />
         <Contact />
       </main>
       <Footer />

@@ -42,8 +42,10 @@
 ---
 
 ## Iteration 3 — Blog + Content Parity + Accessibility Fixes
-**Commit:** (current)  
+**Commit:** 22a1bd9  
 **Branch:** main  
+**Vercel Preview:** https://venturexgain-qtbebir7j-hadi-rickits-projects.vercel.app  
+**Critique Score:** 33/40  
 
 **Improvements from Iteration 2:**
 - Blog section added with 4 articles matching real venturexgain.com topics:
@@ -67,3 +69,20 @@
 - Fixed: ChevronDown icon replaces raw Unicode arrow in Hero
 
 **Critique score target:** 34+/40
+
+---
+
+## Iteration 4 — Experience Showcase + Rhythm Fixes + Services Copy
+**Commit:** (current)  
+**Branch:** main  
+**Vercel Preview:** https://venturexgain-cv2ct8fip-hadi-rickits-projects.vercel.app  
+**Critique Score:** TBD  
+
+**Improvements from Iteration 3:**
+- Added Experiences section: visual grid of bespoke experience examples (cycling vineyards, horseback riding, safari walking, canoe naturalist)
+- Signature Service description updated: now leads with specific examples (private vineyard cycling, estate horseback riding, unlisted experts)
+- Email capture moved from standalone section into Footer as a slim strip — removes 3rd consecutive dark section
+- Fixed: About "What We Value" grid — removed double-padding (inline style + className conflict)
+- Fixed: BlogPost CTA uses navigate() + scrollIntoView instead of unreliable /#contact Link
+- Fixed: unused EmailCapture import removed
+- Vercel preview URLs added to all iterations in ITERATIONS.md

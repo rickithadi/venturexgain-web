@@ -9,8 +9,8 @@ const services = [
     title: 'Signature Service',
     sub: 'Full Bespoke Planning',
     description:
-      'Your vacation is designed entirely around your preferences — from accommodation style to dining philosophy, transport to unique local experiences. Includes our VIP Day option for urgent requests that need immediate, concierge-level attention.',
-    details: ['Custom A–Z Itinerary', 'Preferred Partner Perks & Upgrades', 'VIP Day Option for Urgent Requests', 'Ongoing Concierge Throughout Your Trip'],
+      'Your vacation is designed entirely around your passions — not a generic itinerary, but a trip that could only belong to you. Think cycling through working vineyards with the estate owner, horseback riding across private estates at sunrise, or joining a private archaeological dig led by a professor who isn\'t listed anywhere online. We access experts and experiences that aren\'t available to the public, then weave them into a seamlessly executed journey.',
+    details: ['Custom A–Z Itinerary', 'Private & Unlisted Expert Experiences', 'Preferred Partner Perks & Upgrades', 'VIP Day Option for Urgent Requests', 'Ongoing Concierge Throughout Your Trip'],
   },
   {
     number: '02',

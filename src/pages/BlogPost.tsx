@@ -1,4 +1,4 @@
-import { useParams, Link, Navigate } from 'react-router-dom'
+import { useParams, Link, Navigate, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { getPost, posts } from '../data/blog'
@@ -7,6 +7,7 @@ import Footer from '../components/Footer'
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>()
+  const navigate = useNavigate()
   const post = getPost(slug ?? '')
   const idx = posts.findIndex((p) => p.slug === slug)
   const prev = idx > 0 ? posts[idx - 1] : null
@@ -15,6 +16,13 @@ export default function BlogPost() {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [slug])
+
+  const goToContact = () => {
+    navigate('/')
+    setTimeout(() => {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+    }, 100)
+  }
 
   if (!post) return <Navigate to="/journal" replace />
 
@@ -116,18 +124,19 @@ export default function BlogPost() {
             <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: '1.05rem', color: 'var(--fg-2)', marginBottom: '32px' }}>
               Every journey we build is tailored entirely to the person taking it.
             </p>
-            <Link
-              to="/#contact"
+            <button
+              onClick={goToContact}
               style={{
                 fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase',
                 background: 'var(--fg)', color: 'var(--bg)', padding: '14px 36px', textDecoration: 'none',
                 display: 'inline-flex', alignItems: 'center', gap: '10px', transition: 'opacity 0.2s',
+                border: 'none', cursor: 'pointer',
               }}
               onMouseEnter={e => (e.currentTarget.style.opacity = '0.8')}
               onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
             >
               Plan My Trip <ArrowRight size={12} />
-            </Link>
+            </button>
           </div>
         </div>
 

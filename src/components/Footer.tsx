@@ -1,10 +1,68 @@
+import { useState } from 'react'
+import { ArrowRight } from 'lucide-react'
+
 const year = new Date().getFullYear()
 
 export default function Footer() {
+  const [email, setEmail] = useState('')
+  const [done, setDone] = useState(false)
+
+  const handleSignup = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (email) setDone(true)
+  }
+
   return (
     <footer style={{ background: 'var(--bg-dark)', color: 'rgba(246,239,227,0.5)' }}>
+      {/* Email signup strip */}
+      <div style={{ borderBottom: '1px solid rgba(246,239,227,0.08)', padding: '40px 24px' }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '6px' }}>
+              Join the Hive
+            </p>
+            <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: '1rem', color: 'rgba(246,239,227,0.6)', margin: 0 }}>
+              Get our &ldquo;Before You Travel&rdquo; logistics guide — free.
+            </p>
+          </div>
+          {done ? (
+            <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: '0.95rem', color: 'var(--gold-light)', flexShrink: 0 }}>
+              You&rsquo;re in — check your inbox.
+            </p>
+          ) : (
+            <form onSubmit={handleSignup} style={{ display: 'flex', flexShrink: 0 }}>
+              <input
+                type="email"
+                placeholder="your@email.com"
+                required
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                style={{
+                  background: 'rgba(246,239,227,0.07)', border: '1px solid rgba(246,239,227,0.15)',
+                  borderRight: 'none', padding: '11px 14px', fontFamily: 'var(--sans)', fontSize: '11px',
+                  color: 'rgba(246,239,227,0.8)', outline: 'none', letterSpacing: '0.05em', width: '200px',
+                }}
+                onFocus={e => (e.target.style.borderColor = 'rgba(184,125,58,0.6)')}
+                onBlur={e => (e.target.style.borderColor = 'rgba(246,239,227,0.15)')}
+              />
+              <button
+                type="submit"
+                style={{
+                  background: 'var(--gold)', border: '1px solid var(--gold)', color: 'var(--bg-dark)',
+                  padding: '11px 16px', fontFamily: 'var(--sans)', fontSize: '9px',
+                  letterSpacing: '0.2em', textTransform: 'uppercase', cursor: 'pointer',
+                  display: 'flex', alignItems: 'center', gap: '6px',
+                }}
+              >
+                Sign Up <ArrowRight size={10} />
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
+
       {/* Gold rule */}
-      <div style={{ height: '1px', background: 'linear-gradient(to right, transparent, rgba(184,125,58,0.5), transparent)' }} />
+      <div style={{ height: '1px', background: 'linear-gradient(to right, transparent, rgba(184,125,58,0.3), transparent)' }} />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-16" style={{ padding: '64px 24px' }}>
         <div className="grid md:grid-cols-[2fr_1fr_1fr] gap-12 mb-12">

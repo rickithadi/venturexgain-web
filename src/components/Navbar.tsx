@@ -1,17 +1,21 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Menu } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
 
 const links = [
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Testimonials', href: '#testimonials' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '#about', anchor: true },
+  { label: 'Services', href: '#services', anchor: true },
+  { label: 'Journal', href: '/journal', anchor: false },
+  { label: 'FAQ', href: 'https://venturexgain.com/faq-2/', anchor: false, external: true },
+  { label: 'Contact', href: '#contact', anchor: true },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const location = useLocation()
+  const isHome = location.pathname === '/'
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 20)
@@ -30,28 +34,52 @@ export default function Navbar() {
       }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between">
-        <a href="#home" style={{ textDecoration: 'none' }}>
+        <Link to="/" style={{ textDecoration: 'none' }}>
           <div style={{ fontFamily: 'var(--sans)', letterSpacing: '0.22em', fontSize: '11px', textTransform: 'uppercase', color: 'var(--fg)', fontWeight: 400, lineHeight: 1.4 }}>
             Venture &amp; Gain
             <br />
             <span style={{ color: 'var(--gold)', letterSpacing: '0.15em', fontSize: '9px' }}>Luxury Travel</span>
           </div>
-        </a>
+        </Link>
 
-        <nav className="hidden md:flex items-center gap-10">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--fg-2)', textDecoration: 'none', transition: 'color 0.25s' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--fg)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'var(--fg-2)')}
-            >
-              {l.label}
-            </a>
-          ))}
+        <nav className="hidden md:flex items-center gap-8">
+          {links.map((l) =>
+            l.anchor && isHome ? (
+              <a
+                key={l.href}
+                href={l.href}
+                style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--fg-2)', textDecoration: 'none', transition: 'color 0.25s' }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'var(--fg)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'var(--fg-2)')}
+              >
+                {l.label}
+              </a>
+            ) : (l as { external?: boolean }).external ? (
+              <a
+                key={l.href}
+                href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--fg-2)', textDecoration: 'none', transition: 'color 0.25s' }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'var(--fg)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'var(--fg-2)')}
+              >
+                {l.label}
+              </a>
+            ) : (
+              <Link
+                key={l.href}
+                to={l.anchor ? '/' + l.href : l.href}
+                style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--fg-2)', textDecoration: 'none', transition: 'color 0.25s' }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'var(--fg)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'var(--fg-2)')}
+              >
+                {l.label}
+              </Link>
+            )
+          )}
           <a
-            href="#contact"
+            href={isHome ? '#contact' : '/#contact'}
             style={{
               fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase',
               border: '1px solid var(--fg)', color: 'var(--fg)', padding: '9px 20px', textDecoration: 'none',

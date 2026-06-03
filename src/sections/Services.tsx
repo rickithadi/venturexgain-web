@@ -131,8 +131,8 @@ export default function Services() {
                   style={{ overflow: 'hidden' }}
                 >
                   <div
-                    className="grid md:grid-cols-[1fr_1fr] gap-10"
-                    style={{ paddingBottom: '32px', paddingLeft: '84px' }}
+                    className="grid md:grid-cols-[1fr_1fr] gap-10 pl-0 sm:pl-[84px]"
+                    style={{ paddingBottom: '32px' }}
                   >
                     <p style={{ fontFamily: 'var(--serif)', fontSize: '1.1rem', lineHeight: 1.7, color: 'var(--fg-2)', margin: 0 }}>
                       {svc.description}

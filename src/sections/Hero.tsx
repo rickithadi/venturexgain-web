@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
 
 const stagger: Variants = {
   hidden: {},
@@ -118,7 +119,7 @@ export default function Hero() {
 
             <motion.div
               variants={line}
-              className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-12"
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-12"
             >
               <a
                 href="#contact"
@@ -130,10 +131,25 @@ export default function Hero() {
                 onMouseEnter={e => (e.currentTarget.style.opacity = '0.8')}
                 onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
               >
-                Plan My Journey
+                Plan My Trip
+              </a>
+              <a
+                href="https://tidycal.com/venturexgain"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase',
+                  border: '1px solid var(--fg)', color: 'var(--fg)', padding: '13px 24px', textDecoration: 'none',
+                  transition: 'all 0.25s', display: 'inline-flex', alignItems: 'center', gap: '8px',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'var(--fg)'; e.currentTarget.style.color = 'var(--bg)' }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--fg)' }}
+              >
+                Book a Call
               </a>
               <a
                 href="#about"
+                className="hidden sm:flex items-center gap-1"
                 style={{
                   fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase',
                   color: 'var(--fg-2)', textDecoration: 'none', borderBottom: '1px solid var(--border)', paddingBottom: '2px',
@@ -142,7 +158,8 @@ export default function Hero() {
                 onMouseEnter={e => (e.currentTarget.style.color = 'var(--fg)')}
                 onMouseLeave={e => (e.currentTarget.style.color = 'var(--fg-2)')}
               >
-                Discover More ↓
+                Explore
+                <ChevronDown size={11} />
               </a>
             </motion.div>
           </motion.div>

@@ -3,6 +3,8 @@
   "prompts": [
     "just push to git. no need to run vercel deploy",
     "also she wants a blog section. make one and create a few articles. continue to run critique loop",
-    "I want to make this entire process into a skill. I want to be able to provide a reference website URL and then jump into this workflow. Build a website, essentially an improved, upgraded website. Track the iterations and run the critique loop. Can you turn this into a skill for me? Once that is done, continue your work. There needs to be copy and asset parity. This is being done to build a sample website that we'll try to sell to the client."
+    "I want to make this entire process into a skill. I want to be able to provide a reference website URL and then jump into this workflow. Build a website, essentially an improved, upgraded website. Track the iterations and run the critique loop. Can you turn this into a skill for me? Once that is done, continue your work. There needs to be copy and asset parity. This is being done to build a sample website that we'll try to sell to the client.",
+    "continue",
+    "do run run vercel deploy directly, just push to git. make sure this doesnt repeat"
   ]
 }

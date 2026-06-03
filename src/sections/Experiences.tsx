@@ -61,7 +61,7 @@ export default function Experiences() {
               transition={{ delay: 0.08 + i * 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
               style={{ position: 'relative', overflow: 'hidden' }}
             >
-              <div style={{ aspectRatio: i % 2 === 0 ? '3/4' : '3/5', overflow: 'hidden' }}>
+              <div style={{ aspectRatio: '3/4', overflow: 'hidden' }}>
                 <img
                   src={ex.image}
                   alt={ex.label}

@@ -1,15 +1,32 @@
 import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 
+const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || ''
 const year = new Date().getFullYear()
 
 export default function Footer() {
   const [email, setEmail] = useState('')
-  const [done, setDone] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle')
 
-  const handleSignup = (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (email) setDone(true)
+    if (!email) return
+    if (!FORMSPREE_ID) {
+      window.location.href = `mailto:hello@venturexgain.com?subject=Logistics%20Guide%20Request&body=Please%20send%20me%20the%20Before%20You%20Travel%20guide.%20My%20email%3A%20${encodeURIComponent(email)}`
+      setStatus('done')
+      return
+    }
+    setStatus('sending')
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ email, _subject: 'Logistics Guide Signup' }),
+      })
+      setStatus(res.ok ? 'done' : 'error')
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -25,9 +42,16 @@ export default function Footer() {
               Get our &ldquo;Before You Travel&rdquo; logistics guide — free.
             </p>
           </div>
-          {done ? (
+          {status === 'done' ? (
             <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: '0.95rem', color: 'var(--gold-light)', flexShrink: 0 }}>
-              You&rsquo;re in — check your inbox.
+              Request sent — we&apos;ll be in touch at {email}.
+            </p>
+          ) : status === 'error' ? (
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '10px', color: '#e07060', flexShrink: 0, letterSpacing: '0.05em' }}>
+              Something went wrong.{' '}
+              <a href="mailto:hello@venturexgain.com" style={{ color: 'var(--gold)', textDecoration: 'none', borderBottom: '1px solid rgba(184,125,58,0.4)' }}>
+                Email us directly.
+              </a>
             </p>
           ) : (
             <form onSubmit={handleSignup} style={{ display: 'flex', flexShrink: 0 }}>
@@ -47,14 +71,17 @@ export default function Footer() {
               />
               <button
                 type="submit"
+                disabled={status === 'sending'}
                 style={{
                   background: 'var(--gold)', border: '1px solid var(--gold)', color: 'var(--bg-dark)',
                   padding: '11px 16px', fontFamily: 'var(--sans)', fontSize: '9px',
-                  letterSpacing: '0.2em', textTransform: 'uppercase', cursor: 'pointer',
+                  letterSpacing: '0.2em', textTransform: 'uppercase',
+                  cursor: status === 'sending' ? 'wait' : 'pointer',
+                  opacity: status === 'sending' ? 0.7 : 1,
                   display: 'flex', alignItems: 'center', gap: '6px',
                 }}
               >
-                Sign Up <ArrowRight size={10} />
+                {status === 'sending' ? '…' : <><span>Sign Up</span><ArrowRight size={10} /></>}
               </button>
             </form>
           )}

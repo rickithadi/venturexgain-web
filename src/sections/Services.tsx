@@ -1,159 +1,177 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { Compass, MessageSquare, Sparkles, ArrowRight } from 'lucide-react'
+import { useRef, useState } from 'react'
+import { ArrowRight, Plus, Minus } from 'lucide-react'
 
 const services = [
   {
-    icon: Compass,
     number: '01',
     title: 'Signature Service',
-    subtitle: 'Full Bespoke Planning',
+    sub: 'Full Bespoke Planning',
     description:
       'Your vacation is designed entirely around your preferences — from accommodation style to dining philosophy, transport to unique local experiences. Includes our VIP Day option for urgent requests that need immediate, concierge-level attention.',
-    features: ['Custom A–Z Itinerary', 'VIP Day Option', 'Preferred Partner Perks', 'Full Concierge Support'],
-    image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80&auto=format',
+    details: ['Custom A–Z Itinerary', 'Preferred Partner Perks & Upgrades', 'VIP Day Option for Urgent Requests', 'Ongoing Concierge Throughout Your Trip'],
   },
   {
-    icon: MessageSquare,
     number: '02',
     title: 'Trip Consult',
-    subtitle: 'Expert Guidance',
+    sub: 'Expert Guidance',
     description:
-      'Already have a trip in mind? Our expert consultation service reviews your existing plans, optimizes your itinerary, advises on the best seasons and routes, and provides visa guidance — so every decision is made with insider knowledge.',
-    features: ['Itinerary Review', 'Season & Route Advice', 'Visa Guidance', 'Local Expert Tips'],
-    image: 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=600&q=80&auto=format',
+      'Already have a trip in mind? We review your existing plans, optimize your itinerary, advise on the best seasons and routes, and provide visa guidance — so every decision is made with insider knowledge.',
+    details: ['Itinerary Review & Optimization', 'Season & Route Advice', 'Visa Guidance', 'Local Expert Recommendations'],
   },
   {
-    icon: Sparkles,
     number: '03',
     title: 'À La Carte & Concierge',
-    subtitle: 'Flexible Services',
+    sub: 'Flexible Services',
     description:
-      'Choose exactly what you need: hotel-only bookings with our preferred partner benefits, full itinerary creation, restaurant reservations, private transfers, or ongoing concierge support throughout your journey.',
-    features: ['Hotel-Only Bookings', 'Full Itinerary Creation', 'Restaurant Reservations', 'Concierge On-Trip'],
-    image: 'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=600&q=80&auto=format',
+      'Choose exactly what you need: hotel-only bookings with preferred partner benefits, full itinerary creation, restaurant reservations, private transfers, or ongoing concierge support throughout your journey.',
+    details: ['Hotel-Only Bookings', 'Full Itinerary Creation', 'Restaurant & Experience Reservations', 'On-Trip Concierge Support'],
   },
 ]
 
 export default function Services() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const inView = useInView(ref, { once: true, margin: '-60px' })
+  const [expanded, setExpanded] = useState<number | null>(null)
 
   return (
-    <section id="services" className="bg-[#0d1117] py-28 px-6">
-      <div className="max-w-7xl mx-auto" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <p
-            className="text-[#c9a84c] text-xs tracking-[0.35em] uppercase mb-4"
-            style={{ fontFamily: "'Jost', sans-serif" }}
+    <section
+      id="services"
+      ref={ref}
+      style={{ background: 'var(--bg-2)', paddingTop: '100px', paddingBottom: '100px' }}
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-16">
+        {/* Header */}
+        <div className="grid lg:grid-cols-[1fr_auto] items-end gap-8 mb-16" style={{ borderBottom: '1px solid var(--border)', paddingBottom: '28px' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
           >
-            What We Offer
-          </p>
-          <h2
-            className="text-white font-light leading-[1.1] mb-4"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: 'clamp(2.2rem, 5vw, 4rem)',
-            }}
-          >
-            Journeys Crafted with{' '}
-            <em className="italic text-[#c9a84c]">Intention</em>
-          </h2>
-          <p
-            className="text-white/50 max-w-md mx-auto leading-relaxed"
-            style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.1rem' }}
-          >
-            Every service is designed to give you the trip of your dreams — with none of the legwork.
-          </p>
-        </motion.div>
-
-        <div className="flex flex-col gap-12">
-          {services.map((svc, i) => (
-            <motion.div
-              key={svc.number}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.15 + i * 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className={`grid lg:grid-cols-2 gap-0 overflow-hidden ${
-                i % 2 === 1 ? 'lg:flex-row-reverse' : ''
-              }`}
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '12px' }}>
+              What We Offer
+            </p>
+            <h2
+              style={{
+                fontFamily: 'var(--serif)',
+                fontSize: 'clamp(2rem, 4vw, 3.4rem)',
+                fontWeight: 300,
+                lineHeight: 1.1,
+                color: 'var(--fg)',
+                margin: 0,
+              }}
             >
-              {/* Image */}
-              <div className={`relative h-64 lg:h-auto ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
-                <img
-                  src={svc.image}
-                  alt={svc.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0d1117]/60 to-transparent" />
-                <span
-                  className="absolute top-6 left-6 text-6xl font-light text-white/10"
-                  style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                >
-                  {svc.number}
-                </span>
-              </div>
+              Journeys Crafted with Intention
+            </h2>
+          </motion.div>
+          <motion.a
+            href="#contact"
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            style={{
+              fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase',
+              color: 'var(--fg-2)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px',
+              whiteSpace: 'nowrap' as const, transition: 'color 0.2s',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = 'var(--fg)')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'var(--fg-2)')}
+          >
+            Get Started <ArrowRight size={12} />
+          </motion.a>
+        </div>
 
-              {/* Content */}
-              <div
-                className={`bg-[#1a2436] p-10 lg:p-14 flex flex-col justify-center ${
-                  i % 2 === 1 ? 'lg:order-1' : ''
-                }`}
+        {/* Service list */}
+        <div>
+          {services.map((svc, i) => {
+            const isOpen = expanded === i
+            return (
+              <motion.div
+                key={svc.number}
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.1 + i * 0.1, duration: 0.7 }}
+                style={{ borderBottom: '1px solid var(--border)' }}
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <svc.icon size={16} className="text-[#c9a84c]" />
-                  <span
-                    className="text-[#c9a84c] text-xs tracking-[0.25em] uppercase"
-                    style={{ fontFamily: "'Jost', sans-serif" }}
-                  >
-                    {svc.subtitle}
-                  </span>
-                </div>
-                <h3
-                  className="text-white font-light mb-4"
+                <button
+                  onClick={() => setExpanded(isOpen ? null : i)}
                   style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 'clamp(1.8rem, 3vw, 2.4rem)',
+                    width: '100%', background: 'none', border: 'none', cursor: 'pointer',
+                    padding: '28px 0', textAlign: 'left' as const,
+                    display: 'grid', gridTemplateColumns: '60px 1fr 1fr auto',
+                    alignItems: 'center', gap: '24px',
                   }}
+                  className="group"
                 >
-                  {svc.title}
-                </h3>
-                <p
-                  className="text-white/55 leading-relaxed mb-8"
-                  style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.05rem' }}
+                  <span style={{ fontFamily: 'var(--serif)', fontSize: '1.1rem', color: 'var(--gold)', fontWeight: 300 }}>
+                    {svc.number}
+                  </span>
+                  <div>
+                    <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)', fontWeight: 300, color: 'var(--fg)', margin: 0, lineHeight: 1.2 }}>
+                      {svc.title}
+                    </p>
+                  </div>
+                  <p
+                    className="hidden md:block"
+                    style={{ fontFamily: 'var(--sans)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--fg-2)', margin: 0 }}
+                  >
+                    {svc.sub}
+                  </p>
+                  <div style={{ color: 'var(--fg-2)', flexShrink: 0, transition: 'color 0.2s' }}>
+                    {isOpen ? <Minus size={16} /> : <Plus size={16} />}
+                  </div>
+                </button>
+
+                {/* Expanded content */}
+                <motion.div
+                  initial={false}
+                  animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
+                  style={{ overflow: 'hidden' }}
                 >
-                  {svc.description}
-                </p>
-                <ul className="grid grid-cols-2 gap-2 mb-8">
-                  {svc.features.map((f) => (
-                    <li
-                      key={f}
-                      className="flex items-center gap-2 text-white/50 text-xs"
-                      style={{ fontFamily: "'Jost', sans-serif" }}
-                    >
-                      <span className="w-1 h-1 bg-[#c9a84c] rounded-full flex-shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href="#contact"
-                  className="flex items-center gap-2 text-[#c9a84c] hover:gap-4 transition-all duration-300 text-xs tracking-[0.2em] uppercase group w-fit"
-                  style={{ fontFamily: "'Jost', sans-serif" }}
-                >
-                  Get Started
-                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
-                </a>
-              </div>
-            </motion.div>
-          ))}
+                  <div
+                    className="grid md:grid-cols-[1fr_1fr] gap-10"
+                    style={{ paddingBottom: '32px', paddingLeft: '84px' }}
+                  >
+                    <p style={{ fontFamily: 'var(--serif)', fontSize: '1.1rem', lineHeight: 1.7, color: 'var(--fg-2)', margin: 0 }}>
+                      {svc.description}
+                    </p>
+                    <div>
+                      <p style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '12px' }}>
+                        What&rsquo;s Included
+                      </p>
+                      <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 20px' }}>
+                        {svc.details.map((d) => (
+                          <li
+                            key={d}
+                            style={{
+                              fontFamily: 'var(--sans)', fontSize: '11px', letterSpacing: '0.05em',
+                              color: 'var(--fg-2)', padding: '6px 0', borderBottom: '1px solid var(--border)',
+                              display: 'flex', alignItems: 'center', gap: '10px',
+                            }}
+                          >
+                            <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--gold)', flexShrink: 0 }} />
+                            {d}
+                          </li>
+                        ))}
+                      </ul>
+                      <a
+                        href="#contact"
+                        style={{
+                          fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase',
+                          color: 'var(--fg)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px',
+                          borderBottom: '1px solid var(--border)', paddingBottom: '2px',
+                        }}
+                      >
+                        Inquire About This Service <ArrowRight size={11} />
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>

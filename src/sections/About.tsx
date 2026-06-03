@@ -1,124 +1,172 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Leaf, Globe, Star } from 'lucide-react'
-
-const values = [
-  {
-    icon: Globe,
-    title: 'Expert Curation',
-    desc: 'As a repeat expat and arts, history & culinary expert, Avantika brings insider knowledge to every journey.',
-  },
-  {
-    icon: Leaf,
-    title: 'Conscious Travel',
-    desc: 'We help you leave every destination better than you found it — sustainable, responsible, and meaningful.',
-  },
-  {
-    icon: Star,
-    title: 'VIP Treatment',
-    desc: 'Global connections mean you receive valued-added perks, upgrades, and experiences unavailable elsewhere.',
-  },
-]
 
 export default function About() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+
+  const fadeIn = (delay = 0) => ({
+    initial: { opacity: 0, y: 20 },
+    animate: inView ? { opacity: 1, y: 0 } : {},
+    transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] },
+  })
 
   return (
-    <section id="about" className="bg-[#faf6f0] py-28 px-6">
-      <div className="max-w-7xl mx-auto" ref={ref}>
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="relative"
+    <section id="about" ref={ref} style={{ background: 'var(--bg)', paddingTop: '120px', paddingBottom: '120px' }}>
+      {/* Manifesto strip */}
+      <div
+        style={{
+          background: 'var(--bg-dark)',
+          padding: '40px 40px',
+          marginBottom: '100px',
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-16">
+          <motion.blockquote
+            {...fadeIn()}
+            style={{
+              fontFamily: 'var(--serif)',
+              fontSize: 'clamp(1.6rem, 3.5vw, 3rem)',
+              fontWeight: 300,
+              fontStyle: 'italic',
+              color: 'rgba(246,239,227,0.9)',
+              lineHeight: 1.3,
+              margin: 0,
+              maxWidth: '880px',
+            }}
           >
-            <div className="relative aspect-[3/4] overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=800&q=85&auto=format"
-                alt="Luxury travel experience"
-                className="w-full h-full object-cover"
-                loading="lazy"
+            &ldquo;Life&rsquo;s too short for mediocre vacations. You deserve
+            the trip of a lifetime,{' '}
+            <em style={{ color: 'var(--gold-light)', fontStyle: 'normal' }}>every time.</em>&rdquo;
+          </motion.blockquote>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-16">
+        <div className="grid lg:grid-cols-[1fr_1fr] gap-20 items-start">
+          {/* Text column */}
+          <div>
+            <motion.p
+              {...fadeIn(0.1)}
+              style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '24px' }}
+            >
+              About Venture &amp; Gain
+            </motion.p>
+
+            <motion.h2
+              {...fadeIn(0.2)}
+              style={{
+                fontFamily: 'var(--serif)',
+                fontSize: 'clamp(2.2rem, 4vw, 3.6rem)',
+                fontWeight: 300,
+                lineHeight: 1.1,
+                color: 'var(--fg)',
+                marginBottom: '28px',
+                marginTop: 0,
+              }}
+            >
+              Curating rich, awe-inspiring,{' '}
+              <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>purposeful journeys</em>{' '}
+              for the modern traveler.
+            </motion.h2>
+
+            <motion.p
+              {...fadeIn(0.3)}
+              style={{
+                fontFamily: 'var(--serif)', fontSize: '1.15rem', lineHeight: 1.7,
+                color: 'var(--fg-2)', marginBottom: '20px',
+              }}
+            >
+              At Venture &amp; Gain Travel, we bridge the gap between your travel dreams
+              and a flawlessly executed reality. We believe the best travel experiences
+              are deeply personal, impeccably planned, and leave both the traveler and
+              the destination better than before.
+            </motion.p>
+
+            <motion.p
+              {...fadeIn(0.35)}
+              style={{
+                fontFamily: 'var(--serif)', fontSize: '1.15rem', lineHeight: 1.7,
+                color: 'var(--fg-2)', marginBottom: '36px',
+              }}
+            >
+              Founded by Avantika Krishna — a repeat expat, arts, history &amp; culinary
+              expert, and national park aficionado — our agency brings rare insider
+              knowledge and genuine passion to every journey we design.
+            </motion.p>
+
+            <motion.div {...fadeIn(0.4)} className="flex flex-col gap-4">
+              {[
+                'Expert curation by a seasoned global traveler',
+                'Preferred partner relationships for VIP treatment',
+                'Sustainable, responsible travel practices',
+                'Full A–Z service or consultation-only — your choice',
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3">
+                  <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'var(--gold)', flexShrink: 0, marginTop: '9px' }} />
+                  <span style={{ fontFamily: 'var(--sans)', fontSize: '12px', letterSpacing: '0.05em', color: 'var(--fg-2)', lineHeight: 1.6 }}>
+                    {item}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Image column */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
+          >
+            {/* Main image */}
+            <div style={{ position: 'relative', marginBottom: '20px' }}>
+              <div style={{ aspectRatio: '4/5', overflow: 'hidden' }}>
+                <img
+                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=85&auto=format"
+                  alt="Curated luxury travel destination"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  loading="lazy"
+                />
+              </div>
+              {/* Offset accent */}
+              <div
+                style={{
+                  position: 'absolute', bottom: '-16px', left: '-16px',
+                  width: '50%', height: '40%',
+                  border: '1px solid var(--gold)',
+                  opacity: 0.35,
+                  pointerEvents: 'none',
+                  zIndex: -1,
+                }}
               />
             </div>
-            {/* Decorative gold border */}
-            <div className="absolute -bottom-6 -right-6 w-2/3 h-2/3 border-2 border-[#c9a84c]/30 -z-10" />
-          </motion.div>
 
-          {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col gap-8"
-          >
-            <div>
+            {/* Small inset quote */}
+            <div
+              style={{
+                borderLeft: '2px solid var(--gold)',
+                paddingLeft: '18px',
+                marginTop: '32px',
+              }}
+            >
               <p
-                className="text-[#c9a84c] text-xs tracking-[0.3em] uppercase mb-4"
-                style={{ fontFamily: "'Jost', sans-serif" }}
-              >
-                About Venture &amp; Gain
-              </p>
-              <h2
-                className="font-light leading-[1.15] text-[#0d1117] mb-6"
                 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 'clamp(2rem, 4vw, 3.2rem)',
+                  fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: '1.1rem',
+                  color: 'var(--fg-2)', lineHeight: 1.6, margin: 0,
                 }}
               >
-                You deserve the trip
-                <br />
-                <em className="italic text-[#c9a84c]">of a lifetime, every time</em>
-              </h2>
-              <p
-                className="text-[#2c2c2c]/70 leading-relaxed mb-4"
-                style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.15rem' }}
-              >
-                At Venture &amp; Gain Travel, we are passionate about curating rich, awe-inspiring,
-                purposeful journeys for the modern traveler. We bridge the gap between your travel
-                dreams and a flawlessly executed reality.
+                &ldquo;We are passionate about helping modern travelers have unique,
+                enriching experiences worldwide while leaving destinations better.&rdquo;
               </p>
               <p
-                className="text-[#2c2c2c]/70 leading-relaxed"
-                style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.15rem' }}
+                style={{
+                  fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.2em',
+                  textTransform: 'uppercase', color: 'var(--gold)', marginTop: '12px',
+                }}
               >
-                Founded by Avantika Krishna — a repeat expat, arts, history &amp; culinary expert,
-                and national park aficionado — our agency is built on the belief that life&apos;s
-                too short for mediocre vacations.
+                Avantika Krishna, Founder
               </p>
-            </div>
-
-            <div className="flex flex-col gap-5">
-              {values.map((v, i) => (
-                <motion.div
-                  key={v.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.3 + i * 0.1, duration: 0.6 }}
-                  className="flex gap-4 items-start"
-                >
-                  <div className="flex-shrink-0 w-10 h-10 border border-[#c9a84c]/40 flex items-center justify-center">
-                    <v.icon size={16} className="text-[#c9a84c]" />
-                  </div>
-                  <div>
-                    <h3
-                      className="text-[#0d1117] font-medium mb-1 text-sm tracking-wide uppercase"
-                      style={{ fontFamily: "'Jost', sans-serif" }}
-                    >
-                      {v.title}
-                    </h3>
-                    <p
-                      className="text-[#2c2c2c]/65 text-sm leading-relaxed"
-                      style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1rem' }}
-                    >
-                      {v.desc}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
             </div>
           </motion.div>
         </div>

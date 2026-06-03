@@ -1,46 +1,32 @@
-import { AtSign, ExternalLink, Mail } from 'lucide-react'
+const year = new Date().getFullYear()
 
 export default function Footer() {
-  const year = new Date().getFullYear()
-
   return (
-    <footer className="bg-[#0d1117] border-t border-white/10">
-      {/* Gold top bar */}
-      <div className="h-[1px] bg-gradient-to-r from-transparent via-[#c9a84c]/40 to-transparent" />
+    <footer style={{ background: 'var(--bg-dark)', color: 'rgba(246,239,227,0.5)' }}>
+      {/* Gold rule */}
+      <div style={{ height: '1px', background: 'linear-gradient(to right, transparent, rgba(184,125,58,0.5), transparent)' }} />
 
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-3 gap-10 mb-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16" style={{ padding: '64px 24px' }}>
+        <div className="grid md:grid-cols-[2fr_1fr_1fr] gap-12 mb-12">
           {/* Brand */}
           <div>
-            <p
-              className="text-[#c9a84c] tracking-[0.25em] uppercase text-xs mb-1"
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '4px' }}>
               Venture &amp; Gain
             </p>
-            <p
-              className="text-white/40 tracking-[0.15em] uppercase text-xs mb-5"
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
-              Luxury Travel
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(246,239,227,0.3)', marginBottom: '20px' }}>
+              Luxury Travel &bull; New York
             </p>
-            <p
-              className="text-white/45 leading-relaxed text-sm max-w-xs"
-              style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '0.95rem' }}
-            >
-              Crafting bespoke luxury getaways for sophisticated &amp; conscious travelers. New York.
+            <p style={{ fontFamily: 'var(--serif)', fontSize: '1rem', fontStyle: 'italic', lineHeight: 1.7, color: 'rgba(246,239,227,0.45)', maxWidth: '360px' }}>
+              Crafting bespoke luxury getaways for sophisticated &amp; conscious travelers worldwide.
             </p>
           </div>
 
-          {/* Links */}
+          {/* Nav */}
           <div>
-            <p
-              className="text-white/30 text-xs tracking-[0.25em] uppercase mb-5"
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(246,239,227,0.25)', marginBottom: '18px' }}>
               Navigate
             </p>
-            <ul className="flex flex-col gap-3">
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {[
                 { label: 'Home', href: '#home' },
                 { label: 'About', href: '#about' },
@@ -51,8 +37,9 @@ export default function Footer() {
                 <li key={l.href}>
                   <a
                     href={l.href}
-                    className="text-white/50 hover:text-[#c9a84c] transition-colors text-xs tracking-[0.1em]"
-                    style={{ fontFamily: "'Jost', sans-serif" }}
+                    style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.12em', color: 'rgba(246,239,227,0.45)', textDecoration: 'none', transition: 'color 0.2s' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold)')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'rgba(246,239,227,0.45)')}
                   >
                     {l.label}
                   </a>
@@ -61,61 +48,47 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Connect */}
           <div>
-            <p
-              className="text-white/30 text-xs tracking-[0.25em] uppercase mb-5"
-              style={{ fontFamily: "'Jost', sans-serif" }}
-            >
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(246,239,227,0.25)', marginBottom: '18px' }}>
               Connect
             </p>
-            <div className="flex flex-col gap-3 mb-6">
-              <a
-                href="mailto:hello@venturexgain.com"
-                className="text-white/50 hover:text-[#c9a84c] transition-colors text-xs flex items-center gap-2"
-                style={{ fontFamily: "'Jost', sans-serif" }}
-              >
-                <Mail size={12} />
-                hello@venturexgain.com
-              </a>
-            </div>
-            <div className="flex gap-4">
-              <a
-                href="https://instagram.com/venturexgain"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 border border-white/15 hover:border-[#c9a84c] hover:text-[#c9a84c] text-white/40 flex items-center justify-center transition-all duration-300"
-                aria-label="Instagram"
-              >
-                <AtSign size={13} />
-              </a>
-              <a
-                href="https://linkedin.com/in/avantika-krishna"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 border border-white/15 hover:border-[#c9a84c] hover:text-[#c9a84c] text-white/40 flex items-center justify-center transition-all duration-300"
-                aria-label="LinkedIn"
-              >
-                <ExternalLink size={13} />
-              </a>
-            </div>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {[
+                { label: 'hello@venturexgain.com', href: 'mailto:hello@venturexgain.com' },
+                { label: '@venturexgain', href: 'https://instagram.com/venturexgain' },
+                { label: 'Avantika on LinkedIn', href: 'https://linkedin.com/in/avantika-krishna' },
+              ].map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    target={l.href.startsWith('http') ? '_blank' : undefined}
+                    rel={l.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    style={{ fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '0.05em', color: 'rgba(246,239,227,0.45)', textDecoration: 'none', transition: 'color 0.2s' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold)')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'rgba(246,239,227,0.45)')}
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p
-            className="text-white/25 text-xs tracking-[0.1em]"
-            style={{ fontFamily: "'Jost', sans-serif" }}
-          >
+        <div
+          style={{ borderTop: '1px solid rgba(246,239,227,0.08)', paddingTop: '24px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}
+        >
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.1em', color: 'rgba(246,239,227,0.22)' }}>
             &copy; {year} Venture &amp; Gain Travel. All rights reserved.
           </p>
-          <div className="flex gap-6">
+          <div style={{ display: 'flex', gap: '24px' }}>
             {['Privacy Policy', 'Terms of Service'].map((l) => (
               <a
-                key={l}
-                href="#"
-                className="text-white/25 hover:text-[#c9a84c] text-xs transition-colors"
-                style={{ fontFamily: "'Jost', sans-serif" }}
+                key={l} href="#"
+                style={{ fontFamily: 'var(--sans)', fontSize: '9px', letterSpacing: '0.1em', color: 'rgba(246,239,227,0.22)', textDecoration: 'none', transition: 'color 0.2s' }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(246,239,227,0.22)')}
               >
                 {l}
               </a>
